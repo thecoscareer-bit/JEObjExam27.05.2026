@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure Online Quiz</title>
+
+<link rel="icon" type="image/png" href="image.png">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- EmailJS -->
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('AQrOoA9vgEUwlbyma'); // ✅ your public key
+</script>
+
+<style>
+@keyframes scrollRightToLeft {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.scrolling-question {
+  white-space: nowrap;
+  animation: scrollRightToLeft 10s linear 2 forwards;
+}
+</style>
+</head>
+
+<body class="bg-slate-100 h-screen flex items-center justify-center overflow-hidden">
+
+<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="flex justify-center mb-4">
+    <img src="THECOS_Google_Form_Header.png" class="max-h-24 object-contain">
+  </div>
+
+  <h1 class="text-2xl font-bold text-center mb-4">Online Quiz</h1>
+
+  <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
+  <input id="studentEmail" type="email" class="w-full border p-2 mb-4 rounded" placeholder="Enter Email Address">
+
+  <button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
+    Start Quiz
+  </button>
+</div>
+
+<!-- EXAM -->
+<div id="exam" class="hidden h-full flex flex-col">
+
+  <div class="flex justify-between mb-3">
+    <span id="timer" class="text-red-600 font-bold"></span>
+    <span class="text-sm text-gray-500">Tab switching disabled</span>
+  </div>
+
+  <div class="flex-1 overflow-y-auto">
+    <div class="overflow-hidden mb-4">
+      <h2 id="question" class="font-semibold text-lg"></h2>
+    </div>
+    <div id="options" class="space-y-2"></div>
+  </div>
+
+  <div class="pt-4 border-t">
+    <button id="nextBtn" class="bg-green-600 text-white px-5 py-2 rounded w-full">
+      Next
+    </button>
+  </div>
+</div>
+
+<!-- THANK YOU -->
+<div id="thankyou" class="hidden text-center">
+  <h1 class="text-2xl font-bold text-green-600 mb-4">✅ Thank You</h1>
+  <p class="text-gray-700 mb-2">Your exam has been submitted successfully.</p>
+  <p class="text-gray-500">You may now close this page.</p>
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const QUESTION_VISIBLE_TIME = 20;
+  const QUESTION_TIME = 60;
+
+      const QUIZ_QUESTIONS = [
+  /* 1 */ {
+    question: "Which leadership style involves decision-making without team input?",
+    options: [
+      "Democratic",
+      "Autocratic",
+      "Transformational",
+      "Laissez-faire"
+    ],
+    correct: "Autocratic"
+  },
+
+  /* 2 */ {
+    question: "SWOT analysis stands for:",
+    options: [
+      "Strategy, Work, Operations, Tactics",
+      "Strengths, Weaknesses, Opportunities, Threats",
+      "Systems, Workflows, Operations, Targets",
+      "Skills, Workforce, Output, Training"
+    ],
+    correct: "Strengths, Weaknesses, Opportunities, Threats"
+  },
+
+  /* 3 */ {
+    question: "Who introduced the concept of Management by Objectives (MBO)?",
+    options: [
+      "Peter Drucker",
+      "Henry Fayol",
+      "Frederick Taylor",
+      "Elton Mayo"
+    ],
+    correct: "Peter Drucker"
+  },
+
+  /* 4 */ {
+    question: "The primary focus of strategic management is:",
+    options: [
+      "Daily operations",
+      "Long-term competitive advantage",
+      "Employee attendance",
+      "Payroll processing"
+    ],
+    correct: "Long-term competitive advantage"
+  },
+
+  /* 5 */ {
+    question: "Transformational leaders primarily focus on:",
+    options: [
+      "Control and discipline",
+      "Inspiring and motivating change",
+      "Micromanagement",
+      "Routine monitoring"
+    ],
+    correct: "Inspiring and motivating change"
+  },
+
+  /* 6 */ {
+    question: "Maslow’s highest level of need is:",
+    options: [
+      "Safety",
+      "Social",
+      "Self-actualization",
+      "Esteem"
+    ],
+    correct: "Self-actualization"
+  },
+
+  /* 7 */ {
+    question: "Which theory includes hygiene and motivator factors?",
+    options: [
+      "McGregor’s Theory X & Y",
+      "Herzberg’s Two-Factor Theory",
+      "Maslow’s Theory",
+      "ERG Theory"
+    ],
+    correct: "Herzberg’s Two-Factor Theory"
+  },
+
+  /* 8 */ {
+    question: "Performance appraisal primarily aims to:",
+    options: [
+      "Terminate employees",
+      "Evaluate and improve performance",
+      "Reduce salaries",
+      "Increase workload"
+    ],
+    correct: "Evaluate and improve performance"
+  },
+
+  /* 9 */ {
+    question: "360-degree feedback collects feedback from:",
+    options: [
+      "Only supervisors",
+      "Only peers",
+      "Multiple stakeholders",
+      "Customers only"
+    ],
+    correct: "Multiple stakeholders"
+  },
+
+  /* 10 */ {
+    question: "Attrition rate refers to:",
+    options: [
+      "Hiring rate",
+      "Employee turnover",
+      "Promotion rate",
+      "Productivity rate"
+    ],
+    correct: "Employee turnover"
+  },
+
+  /* 11 */ {
+    question: "Just-In-Time (JIT) aims to:",
+    options: [
+      "Increase inventory",
+      "Reduce waste and inventory",
+      "Delay production",
+      "Increase storage cost"
+    ],
+    correct: "Reduce waste and inventory"
+  },
+
+  /* 12 */ {
+    question: "Who developed Scientific Management?",
+    options: [
+      "Henry Fayol",
+      "Elton Mayo",
+      "Frederick Taylor",
+      "Max Weber"
+    ],
+    correct: "Frederick Taylor"
+  },
+
+  /* 13 */ {
+    question: "Six Sigma primarily focuses on:",
+    options: [
+      "Marketing growth",
+      "Reducing defects",
+      "Increasing inventory",
+      "Recruitment"
+    ],
+    correct: "Reducing defects"
+  },
+
+  /* 14 */ {
+    question: "Break-even point occurs when:",
+    options: [
+      "Profit is maximum",
+      "Revenue equals cost",
+      "Loss is highest",
+      "Production stops"
+    ],
+    correct: "Revenue equals cost"
+  },
+
+  /* 15 */ {
+    question: "Lean management focuses on:",
+    options: [
+      "Eliminating waste",
+      "Increasing workforce",
+      "Expanding offices",
+      "Increasing paperwork"
+    ],
+    correct: "Eliminating waste"
+  },
+
+  /* 16 */ {
+    question: "ROI stands for:",
+    options: [
+      "Rate of Interest",
+      "Return on Investment",
+      "Revenue of Industry",
+      "Ratio of Income"
+    ],
+    correct: "Return on Investment"
+  },
+
+  /* 17 */ {
+    question: "Working capital is:",
+    options: [
+      "Fixed assets – liabilities",
+      "Current assets – current liabilities",
+      "Total revenue – expenses",
+      "Equity – debt"
+    ],
+    correct: "Current assets – current liabilities"
+  },
+
+  /* 18 */ {
+    question: "Which financial statement shows profitability?",
+    options: [
+      "Balance Sheet",
+      "Cash Flow Statement",
+      "Income Statement",
+      "Trial Balance"
+    ],
+    correct: "Income Statement"
+  },
+
+  /* 19 */ {
+    question: "Depreciation applies to:",
+    options: [
+      "Land",
+      "Cash",
+      "Fixed assets",
+      "Inventory"
+    ],
+    correct: "Fixed assets"
+  },
+
+  /* 20 */ {
+    question: "NPV stands for:",
+    options: [
+      "Net Present Value",
+      "Net Profit Volume",
+      "New Product Value",
+      "Net Purchase Value"
+    ],
+    correct: "Net Present Value"
+  },
+    /* 21 */ {
+    question: "4Ps of Marketing include Product, Price, Place, and:",
+    options: [
+      "Promotion",
+      "Planning",
+      "People",
+      "Process"
+    ],
+    correct: "Promotion"
+  },
+
+  /* 22 */ {
+    question: "Market segmentation divides market based on:",
+    options: [
+      "Random selection",
+      "Similar characteristics",
+      "Competitor strategy",
+      "Government rules"
+    ],
+    correct: "Similar characteristics"
+  },
+
+  /* 23 */ {
+    question: "Brand equity refers to:",
+    options: [
+      "Company profit",
+      "Brand value perception",
+      "Employee loyalty",
+      "Market regulation"
+    ],
+    correct: "Brand value perception"
+  },
+
+  /* 24 */ {
+    question: "B2B stands for:",
+    options: [
+      "Business to Buyer",
+      "Business to Business",
+      "Brand to Brand",
+      "Back to Business"
+    ],
+    correct: "Business to Business"
+  },
+
+  /* 25 */ {
+    question: "Customer lifetime value measures:",
+    options: [
+      "Daily sales",
+      "Long-term customer profitability",
+      "One-time purchase",
+      "Product life cycle"
+    ],
+    correct: "Long-term customer profitability"
+  },
+
+  /* 26 */ {
+    question: "Emotional intelligence includes:",
+    options: [
+      "IQ only",
+      "Self-awareness and empathy",
+      "Technical skills",
+      "Academic knowledge"
+    ],
+    correct: "Self-awareness and empathy"
+  },
+
+  /* 27 */ {
+    question: "Conflict management aims to:",
+    options: [
+      "Increase disputes",
+      "Resolve disagreements effectively",
+      "Ignore issues",
+      "Terminate employees"
+    ],
+    correct: "Resolve disagreements effectively"
+  },
+
+  /* 28 */ {
+    question: "Corporate culture refers to:",
+    options: [
+      "Dress code",
+      "Shared values and beliefs",
+      "Salary structure",
+      "Office location"
+    ],
+    correct: "Shared values and beliefs"
+  },
+
+  /* 29 */ {
+    question: "Span of control means:",
+    options: [
+      "Number of departments",
+      "Number of subordinates reporting to a manager",
+      "Profit margin",
+      "Market size"
+    ],
+    correct: "Number of subordinates reporting to a manager"
+  },
+
+  /* 30 */ {
+    question: "Delegation involves:",
+    options: [
+      "Avoiding responsibility",
+      "Assigning authority and responsibility",
+      "Micromanaging",
+      "Centralizing power"
+    ],
+    correct: "Assigning authority and responsibility"
+  },
+
+  /* 31 */ {
+    question: "Corporate governance ensures:",
+    options: [
+      "Personal gain",
+      "Transparency and accountability",
+      "Monopoly",
+      "High turnover"
+    ],
+    correct: "Transparency and accountability"
+  },
+
+  /* 32 */ {
+    question: "CSR stands for:",
+    options: [
+      "Corporate Social Responsibility",
+      "Company Sales Revenue",
+      "Corporate Salary Ratio",
+      "Customer Service Rule"
+    ],
+    correct: "Corporate Social Responsibility"
+  },
+
+  /* 33 */ {
+    question: "Insider trading is:",
+    options: [
+      "Legal trading practice",
+      "Trading based on confidential information",
+      "Public investment",
+      "International trading"
+    ],
+    correct: "Trading based on confidential information"
+  },
+
+  /* 34 */ {
+    question: "Code of conduct defines:",
+    options: [
+      "Marketing policy",
+      "Ethical standards",
+      "Salary rules",
+      "Production targets"
+    ],
+    correct: "Ethical standards"
+  },
+
+  /* 35 */ {
+    question: "Stakeholders include:",
+    options: [
+      "Only shareholders",
+      "Only employees",
+      "All parties affected by business",
+      "Only customers"
+    ],
+    correct: "All parties affected by business"
+  },
+
+  /* 36 */ {
+    question: "Time management improves:",
+    options: [
+      "Delays",
+      "Productivity",
+      "Conflicts",
+      "Costs"
+    ],
+    correct: "Productivity"
+  },
+
+  /* 37 */ {
+    question: "Decision-making under certainty means:",
+    options: [
+      "No information",
+      "Complete information available",
+      "Random guessing",
+      "High risk"
+    ],
+    correct: "Complete information available"
+  },
+
+  /* 38 */ {
+    question: "Benchmarking compares performance with:",
+    options: [
+      "Past records only",
+      "Industry best practices",
+      "Random firms",
+      "Internal memos"
+    ],
+    correct: "Industry best practices"
+  },
+
+  /* 39 */ {
+    question: "Change management primarily deals with:",
+    options: [
+      "Maintaining status quo",
+      "Managing organizational transition",
+      "Increasing resistance",
+      "Ignoring innovation"
+    ],
+    correct: "Managing organizational transition"
+  },
+
+  /* 40 */ {
+    question: "Risk management involves:",
+    options: [
+      "Ignoring threats",
+      "Identifying and mitigating risks",
+      "Increasing uncertainty",
+      "Avoiding decisions"
+    ],
+    correct: "Identifying and mitigating risks"
+  },
+
+  /* 41 */ {
+    question: "The principle of unity of command was proposed by:",
+    options: [
+      "Peter Drucker",
+      "Henry Fayol",
+      "Frederick Taylor",
+      "Abraham Maslow"
+    ],
+    correct: "Henry Fayol"
+  },
+
+  /* 42 */ {
+    question: "Core competency refers to:",
+    options: [
+      "Weakness",
+      "Unique strength of organization",
+      "Temporary skill",
+      "Market threat"
+    ],
+    correct: "Unique strength of organization"
+  },
+
+  /* 43 */ {
+    question: "Blue Ocean Strategy focuses on:",
+    options: [
+      "Competing in existing markets",
+      "Creating uncontested market space",
+      "Price wars",
+      "Cost cutting only"
+    ],
+    correct: "Creating uncontested market space"
+  },
+
+  /* 44 */ {
+    question: "KPI stands for:",
+    options: [
+      "Key Performance Indicator",
+      "Knowledge Process Index",
+      "Key Profit Input",
+      "Known Productivity Item"
+    ],
+    correct: "Key Performance Indicator"
+  },
+
+  /* 45 */ {
+    question: "Downsizing refers to:",
+    options: [
+      "Expansion",
+      "Reducing workforce",
+      "Increasing assets",
+      "Merging companies"
+    ],
+    correct: "Reducing workforce"
+  },
+
+  /* 46 */ {
+    question: "Organizational restructuring aims to:",
+    options: [
+      "Improve efficiency",
+      "Increase confusion",
+      "Delay decisions",
+      "Reduce accountability"
+    ],
+    correct: "Improve efficiency"
+  },
+
+  /* 47 */ {
+    question: "Negotiation skills are important for:",
+    options: [
+      "Conflict escalation",
+      "Reaching mutually beneficial agreements",
+      "Avoiding discussion",
+      "Ignoring stakeholders"
+    ],
+    correct: "Reaching mutually beneficial agreements"
+  },
+
+  /* 48 */ {
+    question: "Digital transformation involves:",
+    options: [
+      "Paper documentation",
+      "Using technology to improve business",
+      "Manual processes",
+      "Ignoring automation"
+    ],
+    correct: "Using technology to improve business"
+  },
+
+  /* 49 */ {
+    question: "Vision statement defines:",
+    options: [
+      "Current profit",
+      "Future aspirations",
+      "Daily tasks",
+      "Marketing plan"
+    ],
+    correct: "Future aspirations"
+  },
+
+  /* 50 */ {
+    question: "Mission statement explains:",
+    options: [
+      "Long-term dream only",
+      "Purpose and core objectives",
+      "Share price",
+      "Advertising cost"
+    ],
+    correct: "Purpose and core objectives"
+  },
+  /* 1 */ {
+    question: "The Rochdale Principles are associated with:",
+    options: [
+      "Trade unions",
+      "Cooperative movement",
+      "Banking reform",
+      "Industrial policy"
+    ],
+    correct: "Cooperative movement"
+  },
+
+  /* 2 */ {
+    question: "The modern cooperative movement began in:",
+    options: [
+      "France",
+      "Germany",
+      "United Kingdom",
+      "United States"
+    ],
+    correct: "United Kingdom"
+  },
+
+  /* 3 */ {
+    question: "The Rochdale Society of Equitable Pioneers was founded in:",
+    options: [
+      "1776",
+      "1844",
+      "1917",
+      "1945"
+    ],
+    correct: "1844"
+  },
+
+  /* 4 */ {
+    question: "ICA stands for:",
+    options: [
+      "International Credit Association",
+      "Internal Cooperative Alliance",
+      "International Cooperative Alliance",
+      "Indian Cooperative Authority"
+    ],
+    correct: "International Cooperative Alliance"
+  },
+
+  /* 5 */ {
+    question: "The headquarters of the International Cooperative Alliance is in:",
+    options: [
+      "Geneva",
+      "Brussels",
+      "London",
+      "Paris"
+    ],
+    correct: "Brussels"
+  },
+
+  /* 6 */ {
+    question: "Amul is an example of a:",
+    options: [
+      "Housing cooperative",
+      "Dairy cooperative",
+      "Credit union",
+      "Consumer cooperative"
+    ],
+    correct: "Dairy cooperative"
+  },
+
+  /* 7 */ {
+    question: "The White Revolution in India is associated with:",
+    options: [
+      "Green farming",
+      "Dairy development",
+      "Textile growth",
+      "IT industry"
+    ],
+    correct: "Dairy development"
+  },
+
+  /* 8 */ {
+    question: "Who is known as the Father of the White Revolution in India?",
+    options: [
+      "M. S. Swaminathan",
+      "Verghese Kurien",
+      "Jawaharlal Nehru",
+      "B. R. Ambedkar"
+    ],
+    correct: "Verghese Kurien"
+  },
+
+  /* 9 */ {
+    question: "Cooperative societies operate on the principle of:",
+    options: [
+      "Profit maximization",
+      "Democratic control",
+      "Monopoly",
+      "Centralization"
+    ],
+    correct: "Democratic control"
+  },
+
+  /* 10 */ {
+    question: "One member, one vote is a principle of:",
+    options: [
+      "Corporations",
+      "Cooperatives",
+      "Partnerships",
+      "MNCs"
+    ],
+    correct: "Cooperatives"
+  },
+
+  /* 11 */ {
+    question: "The United Nations was established in:",
+    options: [
+      "1919",
+      "1945",
+      "1939",
+      "1955"
+    ],
+    correct: "1945"
+  },
+
+  /* 12 */ {
+    question: "The headquarters of the United Nations is in:",
+    options: [
+      "Geneva",
+      "New York City",
+      "Paris",
+      "London"
+    ],
+    correct: "New York City"
+  },
+
+  /* 13 */ {
+    question: "The IMF stands for:",
+    options: [
+      "International Monetary Fund",
+      "International Market Federation",
+      "Internal Monetary Forum",
+      "International Management Fund"
+    ],
+    correct: "International Monetary Fund"
+  },
+
+  /* 14 */ {
+    question: "The World Trade Organization was formed in:",
+    options: [
+      "1985",
+      "1995",
+      "2001",
+      "1971"
+    ],
+    correct: "1995"
+  },
+
+  /* 15 */ {
+    question: "NATO was formed in:",
+    options: [
+      "1914",
+      "1939",
+      "1949",
+      "1965"
+    ],
+    correct: "1949"
+  },
+
+  /* 16 */ {
+    question: "The European Union’s common currency is:",
+    options: [
+      "Dollar",
+      "Pound",
+      "Euro",
+      "Franc"
+    ],
+    correct: "Euro"
+  },
+
+  /* 17 */ {
+    question: "The BRICS originally included:",
+    options: [
+      "3 countries",
+      "4 countries",
+      "5 countries",
+      "6 countries"
+    ],
+    correct: "5 countries"
+  },
+
+  /* 18 */ {
+    question: "The Cold War was mainly between:",
+    options: [
+      "USA and Germany",
+      "USA and USSR",
+      "UK and France",
+      "China and Japan"
+    ],
+    correct: "USA and USSR"
+  },
+
+  /* 19 */ {
+    question: "The Paris Agreement relates to:",
+    options: [
+      "Trade",
+      "Climate change",
+      "Military alliance",
+      "Nuclear weapons"
+    ],
+    correct: "Climate change"
+  },
+
+  /* 20 */ {
+    question: "The World Health Organization deals primarily with:",
+    options: [
+      "Trade",
+      "Education",
+      "Global health",
+      "Banking"
+    ],
+    correct: "Global health"
+  },
+
+  /* 21 */ {
+    question: "Democracy means rule by:",
+    options: [
+      "King",
+      "People",
+      "Military",
+      "Elite"
+    ],
+    correct: "People"
+  },
+
+  /* 22 */ {
+    question: "The doctrine of separation of powers was proposed by:",
+    options: [
+      "John Locke",
+      "Montesquieu",
+      "Karl Marx",
+      "Plato"
+    ],
+    correct: "Montesquieu"
+  },
+
+  /* 23 */ {
+    question: "The Constitution of India came into effect on:",
+    options: [
+      "15 August 1947",
+      "26 January 1950",
+      "26 November 1949",
+      "2 October 1947"
+    ],
+    correct: "26 January 1950"
+  },
+
+  /* 24 */ {
+    question: "Bicameral legislature means:",
+    options: [
+      "One house",
+      "Two houses",
+      "Three houses",
+      "No house"
+    ],
+    correct: "Two houses"
+  },
+
+  /* 25 */ {
+    question: "The concept of socialism advocates:",
+    options: [
+      "Private ownership only",
+      "Public ownership of means of production",
+      "Military rule",
+      "Absolute monarchy"
+    ],
+    correct: "Public ownership of means of production"
+  },
+
+  /* 26 */ {
+    question: "The term “Cold War” was popularized by:",
+    options: [
+      "Winston Churchill",
+      "George Orwell",
+      "Franklin Roosevelt",
+      "Joseph Stalin"
+    ],
+    correct: "George Orwell"
+  },
+
+  /* 27 */ {
+    question: "Federalism refers to:",
+    options: [
+      "Centralized power",
+      "Division of powers between levels of government",
+      "Military governance",
+      "Single-party system"
+    ],
+    correct: "Division of powers between levels of government"
+  },
+
+  /* 28 */ {
+    question: "Universal adult franchise means:",
+    options: [
+      "Voting by landowners",
+      "Voting by educated citizens",
+      "Voting rights to all adults",
+      "Voting by men only"
+    ],
+    correct: "Voting rights to all adults"
+  },
+
+  /* 29 */ {
+    question: "The Magna Carta was signed in:",
+    options: [
+      "1215",
+      "1492",
+      "1776",
+      "1914"
+    ],
+    correct: "1215"
+  },
+
+  /* 30 */ {
+    question: "The term “Republic” means:",
+    options: [
+      "Hereditary ruler",
+      "Elected head of state",
+      "Military ruler",
+      "Colonial rule"
+    ],
+    correct: "Elected head of state"
+  },
+
+  /* 31 */ {
+    question: "World War I began in:",
+    options: [
+      "1912",
+      "1914",
+      "1916",
+      "1918"
+    ],
+    correct: "1914"
+  },
+
+  /* 32 */ {
+    question: "World War II ended in:",
+    options: [
+      "1943",
+      "1944",
+      "1945",
+      "1946"
+    ],
+    correct: "1945"
+  },
+
+  /* 33 */ {
+    question: "The League of Nations was formed after:",
+    options: [
+      "World War I",
+      "World War II",
+      "Cold War",
+      "French Revolution"
+    ],
+    correct: "World War I"
+  },
+
+  /* 34 */ {
+    question: "The French Revolution began in:",
+    options: [
+      "1789",
+      "1776",
+      "1815",
+      "1917"
+    ],
+    correct: "1789"
+  },
+
+  /* 35 */ {
+    question: "The Industrial Revolution began in:",
+    options: [
+      "USA",
+      "France",
+      "United Kingdom",
+      "Germany"
+    ],
+    correct: "United Kingdom"
+  },
+
+  /* 36 */ {
+    question: "The Russian Revolution occurred in:",
+    options: [
+      "1905",
+      "1917",
+      "1923",
+      "1939"
+    ],
+    correct: "1917"
+  },
+
+  /* 37 */ {
+    question: "India gained independence in:",
+    options: [
+      "1945",
+      "1946",
+      "1947",
+      "1950"
+    ],
+    correct: "1947"
+  },
+
+  /* 38 */ {
+    question: "The American Declaration of Independence was signed in:",
+    options: [
+      "1776",
+      "1789",
+      "1812",
+      "1865"
+    ],
+    correct: "1776"
+  },
+
+  /* 39 */ {
+    question: "The Berlin Wall fell in:",
+    options: [
+      "1987",
+      "1988",
+      "1989",
+      "1991"
+    ],
+    correct: "1989"
+  },
+
+  /* 40 */ {
+    question: "The Renaissance began in:",
+    options: [
+      "England",
+      "Spain",
+      "Italy",
+      "Germany"
+    ],
+    correct: "Italy"
+  },
+
+  /* 41 */ {
+    question: "The Treaty of Versailles was signed in:",
+    options: [
+      "1918",
+      "1919",
+      "1920",
+      "1933"
+    ],
+    correct: "1919"
+  },
+
+  /* 42 */ {
+    question: "The United States was founded in:",
+    options: [
+      "1776",
+      "1783",
+      "1800",
+      "1815"
+    ],
+    correct: "1776"
+  },
+
+  /* 43 */ {
+    question: "The Non-Aligned Movement was founded in 1961 at:",
+    options: [
+      "Cairo",
+      "Belgrade",
+      "Jakarta",
+      "New Delhi"
+    ],
+    correct: "Belgrade"
+  },
+
+  /* 44 */ {
+    question: "The first man to walk on the moon was:",
+    options: [
+      "Yuri Gagarin",
+      "Buzz Aldrin",
+      "Neil Armstrong",
+      "Michael Collins"
+    ],
+    correct: "Neil Armstrong"
+  },
+
+  /* 45 */ {
+    question: "The Great Depression began in:",
+    options: [
+      "1918",
+      "1929",
+      "1935",
+      "1940"
+    ],
+    correct: "1929"
+  },
+
+  /* 46 */ {
+    question: "The Bolshevik leader during the Russian Revolution was:",
+    options: [
+      "Joseph Stalin",
+      "Vladimir Lenin",
+      "Leon Trotsky",
+      "Nicholas II"
+    ],
+    correct: "Vladimir Lenin"
+  },
+
+  /* 47 */ {
+    question: "The Suez Crisis occurred in:",
+    options: [
+      "1956",
+      "1962",
+      "1948",
+      "1973"
+    ],
+    correct: "1956"
+  },
+
+  /* 48 */ {
+    question: "The apartheid system was practiced in:",
+    options: [
+      "USA",
+      "Australia",
+      "South Africa",
+      "Canada"
+    ],
+    correct: "South Africa"
+  },
+
+  /* 49 */ {
+    question: "The Ottoman Empire collapsed after:",
+    options: [
+      "World War I",
+      "World War II",
+      "Cold War",
+      "Crimean War"
+    ],
+    correct: "World War I"
+  },
+
+  /* 50 */ {
+    question: "The United Nations Security Council has:",
+    options: [
+      "10 members",
+      "12 members",
+      "15 members",
+      "20 members"
+    ],
+    correct: "15 members"
+  }
+];
+
+
+
+  const login = document.getElementById("login");
+  const exam = document.getElementById("exam");
+  const thankyou = document.getElementById("thankyou");
+  const startBtn = document.getElementById("startBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  const nameInput = document.getElementById("studentName");
+  const emailInput = document.getElementById("studentEmail");
+  const timerEl = document.getElementById("timer");
+  const questionEl = document.getElementById("question");
+  const optionsEl = document.getElementById("options");
+
+  let index = 0;
+  let answers = [];
+  let timer = null;
+  let hideTimer = null;
+  let timeLeft = QUESTION_TIME;
+  let examFinished = false;
+
+  startBtn.addEventListener("click", () => {
+    if (!nameInput.value.trim() || !emailInput.value.trim()) {
+      alert("Enter name and email");
+      return;
+    }
+
+    login.classList.add("hidden");
+    exam.classList.remove("hidden");
+    document.documentElement.requestFullscreen?.();
+    loadQuestion();
+  });
+
+  function loadQuestion() {
+    const q = QUIZ_QUESTIONS[index];
+
+    questionEl.classList.remove("scrolling-question");
+    void questionEl.offsetWidth;
+    questionEl.textContent = q.question;
+    questionEl.style.visibility = "visible";
+    questionEl.classList.add("scrolling-question");
+
+    optionsEl.innerHTML = "";
+    q.options.forEach((opt, i) => {
+      const label = document.createElement("label");
+      label.className = "block border p-2 rounded cursor-pointer";
+      label.innerHTML = `<input type="radio" name="option" value="${opt}" class="mr-2">${opt}`;
+      optionsEl.appendChild(label);
+    });
+
+    hideTimer = setTimeout(() => {
+      questionEl.style.visibility = "hidden";
+    }, QUESTION_VISIBLE_TIME * 1000);
+
+    timeLeft = QUESTION_TIME;
+    updateTimer();
+
+    timer = setInterval(() => {
+      timeLeft--;
+      updateTimer();
+      if (timeLeft <= 0) nextQuestion();
+    }, 1000);
+  }
+
+  function updateTimer() {
+    timerEl.textContent = `Time left: ${timeLeft}s`;
+  }
+
+  function nextQuestion() {
+    clearInterval(timer);
+    clearTimeout(hideTimer);
+
+    const selected = document.querySelector('input[name="option"]:checked');
+    answers.push(selected ? selected.value : "Not Answered");
+
+    index++;
+    index < QUIZ_QUESTIONS.length ? loadQuestion() : finishExam();
+  }
+
+  nextBtn.addEventListener("click", nextQuestion);
+
+  //function sendResultsEmail() {
+    //let result = "";
+    //QUIZ_QUESTIONS.forEach((q, i) => {
+      //result += `Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n`;
+    //});
+
+    //emailjs.send("service_8yr4zf5",   
+    //"template_kyqnyrd",  {
+      //student_name: nameInput.value,
+      //student_email: emailInput.value,
+      //answers: result
+    //}).catch(err => console.error("EmailJS error:", err));
+  //}
+  
+  
+  function calculateScore() {
+  let score = 0;
+
+  QUIZ_QUESTIONS.forEach((q, i) => {
+    if (answers[i] === q.correct) {
+      score++;
+    }
+  });
+
+  return score;
+}
+
+
+  function sendResultsEmail() {
+  let result = "";
+
+  QUIZ_QUESTIONS.forEach((q, i) => {
+    result += 
+`Q${i + 1}: ${q.question}
+Selected Answer: ${answers[i]}
+Correct Answer: ${q.correct}
+
+`;
+  });
+
+  const score = calculateScore();
+  const total = QUIZ_QUESTIONS.length;
+
+  emailjs.send(
+    "service_8yr4zf5",
+    "template_kyqnyrd",
+    {
+      student_name: nameInput.value,
+      student_email: emailInput.value,
+      score: `${score} / ${total}`,
+      answers: result
+    }
+  ).catch(err => console.error("EmailJS error:", err));
+}
+
+
+  function finishExam() {
+    examFinished = true;
+    clearInterval(timer);
+    clearTimeout(hideTimer);
+    document.exitFullscreen?.();
+
+    sendResultsEmail();
+
+    exam.classList.add("hidden");
+    thankyou.classList.remove("hidden");
+
+    setTimeout(() => location.reload(), 5000);
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && !examFinished) {
+      alert("Tab switching detected. Exam terminated.");
+      location.reload();
+    }
+  });
+
+});
+</script>
+
+</body>
+</html>
+
+
+
