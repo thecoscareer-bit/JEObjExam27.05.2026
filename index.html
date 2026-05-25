@@ -84,1106 +84,1209 @@ document.addEventListener("DOMContentLoaded", () => {
   const QUESTION_VISIBLE_TIME = 20;
   const QUESTION_TIME = 40;
 
-      const QUIZ_QUESTIONS = [
-  /* 1 */ {
-    question: "Which leadership style involves decision-making without team input?",
+     const QUIZ_QUESTIONS = [
+  /* 1 */
+  {
+    question: "A branch processed 720 applications in 18 working days. Average applications processed per day:",
     options: [
-      "Democratic",
-      "Autocratic",
-      "Transformational",
-      "Laissez-faire"
+      "35",
+      "40",
+      "45",
+      "50"
     ],
-    correct: "Autocratic"
+    correct: "40"
   },
 
-  /* 2 */ {
-    question: "SWOT analysis stands for:",
+  /* 2 */
+  {
+    question: "A staff member completes 4 files in 20 minutes. At the same speed, how many files can be completed in 2 hours?",
     options: [
-      "Strategy, Work, Operations, Tactics",
-      "Strengths, Weaknesses, Opportunities, Threats",
-      "Systems, Workflows, Operations, Targets",
-      "Skills, Workforce, Output, Training"
+      "20",
+      "22",
+      "24",
+      "26"
     ],
-    correct: "Strengths, Weaknesses, Opportunities, Threats"
+    correct: "24"
   },
 
-  /* 3 */ {
-    question: "Who introduced the concept of Management by Objectives (MBO)?",
+  /* 3 */
+  {
+    question: "If 'OFFICE' is coded as 'PGGJDF', then 'AUDIT' is coded as:",
     options: [
-      "Peter Drucker",
-      "Henry Fayol",
-      "Frederick Taylor",
-      "Elton Mayo"
+      "BVEJU",
+      "BVFJU",
+      "CVFJU",
+      "BVDJU"
     ],
-    correct: "Peter Drucker"
+    correct: "BVFJU"
   },
 
-  /* 4 */ {
-    question: "The primary focus of strategic management is:",
+  /* 4 */
+  {
+    question: "A process time reduced from 50 minutes to 40 minutes. Reduction percentage is:",
     options: [
-      "Daily operations",
-      "Long-term competitive advantage",
-      "Employee attendance",
-      "Payroll processing"
+      "15%",
+      "20%",
+      "25%",
+      "30%"
     ],
-    correct: "Long-term competitive advantage"
+    correct: "20%"
   },
 
-  /* 5 */ {
-    question: "Transformational leaders primarily focus on:",
+  /* 5 */
+  {
+    question: "A branch receives applications in the ratio 3:5:7. If total applications are 300, highest category applications equal:",
     options: [
-      "Control and discipline",
-      "Inspiring and motivating change",
-      "Micromanagement",
-      "Routine monitoring"
+      "120",
+      "130",
+      "140",
+      "150"
     ],
-    correct: "Inspiring and motivating change"
+    correct: "140"
   },
 
-  /* 6 */ {
-    question: "Maslow’s highest level of need is:",
+  /* 6 */
+  {
+    question: "A report moves through 5 approval levels and each level takes 12 minutes. Total approval time is:",
     options: [
-      "Safety",
-      "Social",
-      "Self-actualization",
-      "Esteem"
+      "48 mins",
+      "50 mins",
+      "60 mins",
+      "72 mins"
     ],
-    correct: "Self-actualization"
+    correct: "60 mins"
   },
 
-  /* 7 */ {
-    question: "Which theory includes hygiene and motivator factors?",
+  /* 7 */
+  {
+    question: "Find the next number: 5, 10, 20, 40, ___",
     options: [
-      "McGregor’s Theory X & Y",
-      "Herzberg’s Two-Factor Theory",
-      "Maslow’s Theory",
-      "ERG Theory"
+      "60",
+      "70",
+      "80",
+      "90"
     ],
-    correct: "Herzberg’s Two-Factor Theory"
+    correct: "80"
   },
 
-  /* 8 */ {
-    question: "Performance appraisal primarily aims to:",
+  /* 8 */
+  {
+    question: "A team completed 60% of a project in 12 days. At the same rate, total days required to complete the project are:",
     options: [
-      "Terminate employees",
-      "Evaluate and improve performance",
-      "Reduce salaries",
-      "Increase workload"
+      "18",
+      "20",
+      "22",
+      "24"
     ],
-    correct: "Evaluate and improve performance"
+    correct: "20"
   },
 
-  /* 9 */ {
-    question: "360-degree feedback collects feedback from:",
+  /* 9 */
+  {
+    question: "If 10 employees complete a task in 15 days, how many employees are needed to complete it in 5 days?",
     options: [
-      "Only supervisors",
-      "Only peers",
-      "Multiple stakeholders",
-      "Customers only"
+      "20",
+      "25",
+      "30",
+      "35"
     ],
-    correct: "Multiple stakeholders"
+    correct: "30"
   },
 
-  /* 10 */ {
-    question: "Attrition rate refers to:",
+  /* 10 */
+  {
+    question: "In a queue, Ramesh is 12th from the front and 9th from the back. Total persons in the queue are:",
     options: [
-      "Hiring rate",
-      "Employee turnover",
-      "Promotion rate",
-      "Productivity rate"
+      "19",
+      "20",
+      "21",
+      "22"
     ],
-    correct: "Employee turnover"
+    correct: "20"
   },
 
-  /* 11 */ {
-    question: "Just-In-Time (JIT) aims to:",
+  /* 11 */
+  {
+    question: "A branch reduced customer complaints from 240 to 180. Reduction percentage equals:",
     options: [
-      "Increase inventory",
-      "Reduce waste and inventory",
-      "Delay production",
-      "Increase storage cost"
+      "20%",
+      "25%",
+      "30%",
+      "35%"
     ],
-    correct: "Reduce waste and inventory"
+    correct: "25%"
   },
 
-  /* 12 */ {
-    question: "Who developed Scientific Management?",
+  /* 12 */
+  {
+    question: "Find the missing term: 2, 6, 18, 54, ___",
     options: [
-      "Henry Fayol",
-      "Elton Mayo",
-      "Frederick Taylor",
-      "Max Weber"
+      "81",
+      "96",
+      "108",
+      "162"
     ],
-    correct: "Frederick Taylor"
+    correct: "162"
   },
 
-  /* 13 */ {
-    question: "Six Sigma primarily focuses on:",
+  /* 13 */
+  {
+    question: "A monthly report contains 900 records. If 5% require correction, how many records need correction?",
     options: [
-      "Marketing growth",
-      "Reducing defects",
-      "Increasing inventory",
-      "Recruitment"
+      "35",
+      "40",
+      "45",
+      "50"
     ],
-    correct: "Reducing defects"
+    correct: "45"
   },
 
-  /* 14 */ {
-    question: "Break-even point occurs when:",
+  /* 14 */
+  {
+    question: "If 25% of a number is 150, the number is:",
     options: [
-      "Profit is maximum",
-      "Revenue equals cost",
-      "Loss is highest",
-      "Production stops"
+      "500",
+      "550",
+      "600",
+      "650"
     ],
-    correct: "Revenue equals cost"
+    correct: "600"
   },
 
-  /* 15 */ {
-    question: "Lean management focuses on:",
+  /* 15 */
+  {
+    question: "A staff member walks 25 metres north, turns right and walks 15 metres. Which direction is he facing now?",
     options: [
-      "Eliminating waste",
-      "Increasing workforce",
-      "Expanding offices",
-      "Increasing paperwork"
+      "North",
+      "South",
+      "East",
+      "West"
     ],
-    correct: "Eliminating waste"
+    correct: "East"
   },
 
-  /* 16 */ {
-    question: "ROI stands for:",
+  /* 16 */
+  {
+    question: "A department handled 960 files in 24 days. At the same speed, files handled in 30 days will be:",
     options: [
-      "Rate of Interest",
-      "Return on Investment",
-      "Revenue of Industry",
-      "Ratio of Income"
+      "1,100",
+      "1,150",
+      "1,200",
+      "1,250"
     ],
-    correct: "Return on Investment"
+    correct: "1,200"
   },
 
-  /* 17 */ {
-    question: "Working capital is:",
+  /* 17 */
+  {
+    question: "Statement: 'All reports must be verified before approval.' Assumptions: I. Verification is compulsory before approval. II. Unverified reports may still get approval.",
     options: [
-      "Fixed assets – liabilities",
-      "Current assets – current liabilities",
-      "Total revenue – expenses",
-      "Equity – debt"
+      "Only I follow",
+      "Only II follows",
+      "Both follow",
+      "Neither follows"
     ],
-    correct: "Current assets – current liabilities"
+    correct: "Only I follow"
   },
 
-  /* 18 */ {
-    question: "Which financial statement shows profitability?",
+  /* 18 */
+  {
+    question: "Find the next term: AZ, BY, CX, ___",
     options: [
-      "Balance Sheet",
-      "Cash Flow Statement",
-      "Income Statement",
-      "Trial Balance"
+      "DV",
+      "DW",
+      "EV",
+      "EW"
     ],
-    correct: "Income Statement"
+    correct: "DW"
   },
 
-  /* 19 */ {
-    question: "Depreciation applies to:",
+  /* 19 */
+  {
+    question: "A branch has 80 staff members. 30% are assigned to operations. Number of operations staff:",
     options: [
-      "Land",
-      "Cash",
-      "Fixed assets",
-      "Inventory"
+      "20",
+      "22",
+      "24",
+      "26"
     ],
-    correct: "Fixed assets"
+    correct: "24"
   },
 
-  /* 20 */ {
-    question: "NPV stands for:",
+  /* 20 */
+  {
+    question: "A task starts at 10:15 AM and ends at 1:45 PM. Total duration is:",
     options: [
-      "Net Present Value",
-      "Net Profit Volume",
-      "New Product Value",
-      "Net Purchase Value"
+      "3 hrs",
+      "3 hrs 15 mins",
+      "3 hrs 30 mins",
+      "3 hrs 45 mins"
     ],
-    correct: "Net Present Value"
-  },
-    /* 21 */ {
-    question: "4Ps of Marketing include Product, Price, Place, and:",
-    options: [
-      "Promotion",
-      "Planning",
-      "People",
-      "Process"
-    ],
-    correct: "Promotion"
+    correct: "3 hrs 30 mins"
   },
 
-  /* 22 */ {
-    question: "Market segmentation divides market based on:",
+  /* 21 */
+  {
+    question: "Which number is different from others?",
     options: [
-      "Random selection",
-      "Similar characteristics",
-      "Competitor strategy",
-      "Government rules"
+      "64",
+      "81",
+      "100",
+      "110"
     ],
-    correct: "Similar characteristics"
+    correct: "110"
   },
 
-  /* 23 */ {
-    question: "Brand equity refers to:",
+  /* 22 */
+  {
+    question: "A branch achieved 90% of its ₹50 lakh target. Actual achievement amount is:",
     options: [
-      "Company profit",
-      "Brand value perception",
-      "Employee loyalty",
-      "Market regulation"
+      "₹42 lakhs",
+      "₹43 lakhs",
+      "₹44 lakhs",
+      "₹45 lakhs"
     ],
-    correct: "Brand value perception"
+    correct: "₹45 lakhs"
   },
 
-  /* 24 */ {
-    question: "B2B stands for:",
+  /* 23 */
+  {
+    question: "If cost price is ₹1,200 and profit percentage is 15%, selling price is:",
     options: [
-      "Business to Buyer",
-      "Business to Business",
-      "Brand to Brand",
-      "Back to Business"
+      "₹1,320",
+      "₹1,350",
+      "₹1,380",
+      "₹1,400"
     ],
-    correct: "Business to Business"
+    correct: "₹1,380"
   },
 
-  /* 25 */ {
-    question: "Customer lifetime value measures:",
+  /* 24 */
+  {
+    question: "A staff member saves 10 minutes per file after automation. If 18 files are processed daily, total time saved per day is:",
     options: [
-      "Daily sales",
-      "Long-term customer profitability",
-      "One-time purchase",
-      "Product life cycle"
+      "2 hrs",
+      "2 hrs 30 mins",
+      "3 hrs",
+      "3 hrs 30 mins"
     ],
-    correct: "Long-term customer profitability"
+    correct: "3 hrs"
   },
 
-  /* 26 */ {
-    question: "Emotional intelligence includes:",
+  /* 25 */
+  {
+    question: "Find the next number: 3, 7, 15, 31, ___",
     options: [
-      "IQ only",
-      "Self-awareness and empathy",
-      "Technical skills",
-      "Academic knowledge"
+      "45",
+      "55",
+      "63",
+      "75"
     ],
-    correct: "Self-awareness and empathy"
+    correct: "63"
   },
 
-  /* 27 */ {
-    question: "Conflict management aims to:",
+  /* 26 */
+  {
+    question: "RBI generally increases repo rate mainly to:",
     options: [
-      "Increase disputes",
-      "Resolve disagreements effectively",
-      "Ignore issues",
-      "Terminate employees"
+      "Increase inflation",
+      "Control inflation and liquidity",
+      "Increase government salary",
+      "Reduce taxation"
     ],
-    correct: "Resolve disagreements effectively"
+    correct: "Control inflation and liquidity"
   },
 
-  /* 28 */ {
-    question: "Corporate culture refers to:",
+  /* 27 */
+  {
+    question: "Which factor has most accelerated digital banking growth in India?",
     options: [
-      "Dress code",
-      "Shared values and beliefs",
-      "Salary structure",
-      "Office location"
+      "Increase in paper-based transactions",
+      "UPI and smartphone penetration",
+      "Reduction in internet usage",
+      "Elimination of mobile banking"
     ],
-    correct: "Shared values and beliefs"
+    correct: "UPI and smartphone penetration"
   },
 
-  /* 29 */ {
-    question: "Span of control means:",
+  /* 28 */
+  {
+    question: "Cyber frauds in banking commonly occur due to:",
     options: [
-      "Number of departments",
-      "Number of subordinates reporting to a manager",
-      "Profit margin",
-      "Market size"
+      "Strong password practices",
+      "Weak digital awareness among users",
+      "Reduced online transactions",
+      "Excessive branch expansion"
     ],
-    correct: "Number of subordinates reporting to a manager"
+    correct: "Weak digital awareness among users"
   },
 
-  /* 30 */ {
-    question: "Delegation involves:",
+  /* 29 */
+  {
+    question: "Which institution regulates the securities market in India?",
     options: [
-      "Avoiding responsibility",
-      "Assigning authority and responsibility",
-      "Micromanaging",
-      "Centralizing power"
+      "RBI",
+      "SEBI",
+      "NABARD",
+      "LIC"
     ],
-    correct: "Assigning authority and responsibility"
+    correct: "SEBI"
   },
 
-  /* 31 */ {
-    question: "Corporate governance ensures:",
+  /* 30 */
+  {
+    question: "Rising inflation generally affects consumers by:",
     options: [
-      "Personal gain",
-      "Transparency and accountability",
-      "Monopoly",
-      "High turnover"
+      "Increasing purchasing power",
+      "Reducing value of money",
+      "Eliminating expenses",
+      "Increasing savings automatically"
     ],
-    correct: "Transparency and accountability"
+    correct: "Reducing value of money"
   },
 
-  /* 32 */ {
-    question: "CSR stands for:",
+  /* 31 */
+  {
+    question: "Which sector currently contributes the highest share to India’s GDP?",
     options: [
-      "Corporate Social Responsibility",
-      "Company Sales Revenue",
-      "Corporate Salary Ratio",
-      "Customer Service Rule"
+      "Agriculture",
+      "Manufacturing",
+      "Services",
+      "Mining"
     ],
-    correct: "Corporate Social Responsibility"
+    correct: "Services"
   },
 
-  /* 33 */ {
-    question: "Insider trading is:",
+  /* 32 */
+  {
+    question: "Financial inclusion mainly focuses on:",
     options: [
-      "Legal trading practice",
-      "Trading based on confidential information",
-      "Public investment",
-      "International trading"
+      "Restricting banking services",
+      "Providing financial access to underserved people",
+      "Eliminating digital banking",
+      "Reducing account openings"
     ],
-    correct: "Trading based on confidential information"
+    correct: "Providing financial access to underserved people"
   },
 
-  /* 34 */ {
-    question: "Code of conduct defines:",
+  /* 33 */
+  {
+    question: "Which government initiative mainly promotes digital transactions and online services?",
     options: [
-      "Marketing policy",
-      "Ethical standards",
-      "Salary rules",
-      "Production targets"
+      "Startup India",
+      "Digital India",
+      "Make in India",
+      "Skill India"
     ],
-    correct: "Ethical standards"
+    correct: "Digital India"
   },
 
-  /* 35 */ {
-    question: "Stakeholders include:",
+  /* 34 */
+  {
+    question: "Which factor most improves customer retention in financial institutions?",
     options: [
-      "Only shareholders",
-      "Only employees",
-      "All parties affected by business",
-      "Only customers"
+      "Delayed grievance handling",
+      "Transparent service and trust",
+      "Weak communication",
+      "Complicated procedures"
     ],
-    correct: "All parties affected by business"
+    correct: "Transparent service and trust"
   },
 
-  /* 36 */ {
-    question: "Time management improves:",
+  /* 35 */
+  {
+    question: "Repo rate changes directly affect:",
     options: [
-      "Delays",
-      "Productivity",
-      "Conflicts",
-      "Costs"
+      "Loan borrowing costs",
+      "Election process",
+      "Public holidays",
+      "Insurance claims only"
     ],
-    correct: "Productivity"
+    correct: "Loan borrowing costs"
   },
 
-  /* 37 */ {
-    question: "Decision-making under certainty means:",
+    /* 36 */
+  {
+    question: "Which organization mainly supports rural financial development?",
     options: [
-      "No information",
-      "Complete information available",
-      "Random guessing",
-      "High risk"
+      "SEBI",
+      "NABARD",
+      "DRDO",
+      "ISRO"
     ],
-    correct: "Complete information available"
+    correct: "NABARD"
   },
 
-  /* 38 */ {
-    question: "Benchmarking compares performance with:",
+  /* 37 */
+  {
+    question: "Which factor mainly increases operational risk in financial institutions?",
     options: [
-      "Past records only",
-      "Industry best practices",
-      "Random firms",
-      "Internal memos"
+      "Strong monitoring systems",
+      "Weak internal controls",
+      "Timely audit response",
+      "Accurate reporting"
     ],
-    correct: "Industry best practices"
+    correct: "Weak internal controls"
   },
 
-  /* 39 */ {
-    question: "Change management primarily deals with:",
+  /* 38 */
+  {
+    question: "GST was mainly introduced to:",
     options: [
-      "Maintaining status quo",
-      "Managing organizational transition",
-      "Increasing resistance",
-      "Ignoring innovation"
+      "Increase indirect tax complexity",
+      "Simplify indirect taxation structure",
+      "Remove all taxes completely",
+      "Reduce exports only"
     ],
-    correct: "Managing organizational transition"
+    correct: "Simplify indirect taxation structure"
   },
 
-  /* 40 */ {
-    question: "Risk management involves:",
+  /* 39 */
+  {
+    question: "Which operational trend is transforming banking and finance rapidly?",
     options: [
-      "Ignoring threats",
-      "Identifying and mitigating risks",
-      "Increasing uncertainty",
-      "Avoiding decisions"
+      "Manual bookkeeping",
+      "AI and automation",
+      "Offline-only systems",
+      "Reduction in technology usage"
     ],
-    correct: "Identifying and mitigating risks"
+    correct: "AI and automation"
   },
 
-  /* 41 */ {
-    question: "The principle of unity of command was proposed by:",
+  /* 40 */
+  {
+    question: "Cybersecurity in financial institutions mainly protects:",
     options: [
-      "Peter Drucker",
-      "Henry Fayol",
-      "Frederick Taylor",
-      "Abraham Maslow"
+      "Buildings and furniture",
+      "Digital systems and customer data",
+      "Transport operations",
+      "Employee attendance records"
     ],
-    correct: "Henry Fayol"
+    correct: "Digital systems and customer data"
   },
 
-  /* 42 */ {
-    question: "Core competency refers to:",
+  /* 41 */
+  {
+    question: "Which factor most improves institutional credibility?",
     options: [
-      "Weakness",
-      "Unique strength of organization",
-      "Temporary skill",
-      "Market threat"
+      "Strong governance and transparency",
+      "Delayed compliance",
+      "Weak monitoring",
+      "Informal reporting"
     ],
-    correct: "Unique strength of organization"
+    correct: "Strong governance and transparency"
   },
 
-  /* 43 */ {
-    question: "Blue Ocean Strategy focuses on:",
+  /* 42 */
+  {
+    question: "Which economic condition generally leads to tighter monetary policy?",
     options: [
-      "Competing in existing markets",
-      "Creating uncontested market space",
-      "Price wars",
-      "Cost cutting only"
+      "Stable prices",
+      "Rising inflation",
+      "Reduced liquidity demand",
+      "Lower borrowing activity"
     ],
-    correct: "Creating uncontested market space"
+    correct: "Rising inflation"
   },
 
-  /* 44 */ {
-    question: "KPI stands for:",
+  /* 43 */
+  {
+    question: "Which initiative mainly promotes manufacturing growth in India?",
     options: [
-      "Key Performance Indicator",
-      "Knowledge Process Index",
-      "Key Profit Input",
-      "Known Productivity Item"
+      "Digital India",
+      "Startup India",
+      "Make in India",
+      "PMJDY"
     ],
-    correct: "Key Performance Indicator"
+    correct: "Make in India"
   },
 
-  /* 45 */ {
-    question: "Downsizing refers to:",
+  /* 44 */
+  {
+    question: "Which factor most improves operational efficiency in organizations?",
     options: [
-      "Expansion",
-      "Reducing workforce",
-      "Increasing assets",
-      "Merging companies"
+      "Technology integration",
+      "Delayed approvals",
+      "Weak workflow",
+      "Informal operations"
     ],
-    correct: "Reducing workforce"
+    correct: "Technology integration"
   },
 
-  /* 46 */ {
-    question: "Organizational restructuring aims to:",
+  /* 45 */
+  {
+    question: "Which is considered a major challenge in digital banking?",
     options: [
-      "Improve efficiency",
-      "Increase confusion",
-      "Delay decisions",
-      "Reduce accountability"
+      "Reduced internet usage",
+      "Cybersecurity threats",
+      "Elimination of online payments",
+      "Reduced mobile banking adoption"
     ],
-    correct: "Improve efficiency"
+    correct: "Cybersecurity threats"
   },
 
-  /* 47 */ {
-    question: "Negotiation skills are important for:",
+  /* 46 */
+  {
+    question: "Which factor most directly impacts long-term organizational sustainability?",
     options: [
-      "Conflict escalation",
-      "Reaching mutually beneficial agreements",
-      "Avoiding discussion",
-      "Ignoring stakeholders"
+      "Strong compliance and accountability",
+      "Informal management practices",
+      "Delayed reporting",
+      "Weak internal controls"
     ],
-    correct: "Reaching mutually beneficial agreements"
+    correct: "Strong compliance and accountability"
   },
 
-  /* 48 */ {
-    question: "Digital transformation involves:",
+  /* 47 */
+  {
+    question: "Which institution issues Indian currency notes?",
     options: [
-      "Paper documentation",
-      "Using technology to improve business",
-      "Manual processes",
-      "Ignoring automation"
+      "SBI",
+      "RBI",
+      "SEBI",
+      "NABARD"
     ],
-    correct: "Using technology to improve business"
+    correct: "RBI"
   },
 
-  /* 49 */ {
-    question: "Vision statement defines:",
+  /* 48 */
+  {
+    question: "Which factor mainly improves financial literacy among people?",
     options: [
-      "Current profit",
-      "Future aspirations",
-      "Daily tasks",
+      "Awareness and education initiatives",
+      "Reduced banking access",
+      "Weak digital adoption",
+      "Delayed customer service"
+    ],
+    correct: "Awareness and education initiatives"
+  },
+
+  /* 49 */
+  {
+    question: "Which factor mainly contributes to rising digital payment usage in India?",
+    options: [
+      "Smartphone and internet accessibility",
+      "Reduced banking awareness",
+      "Elimination of UPI systems",
+      "Increase in paper transactions"
+    ],
+    correct: "Smartphone and internet accessibility"
+  },
+
+  /* 50 */
+  {
+    question: "Which factor most helps reduce fraud risk in institutions?",
+    options: [
+      "Strong verification and internal controls",
+      "Informal approvals",
+      "Delayed reconciliation",
+      "Shared passwords"
+    ],
+    correct: "Strong verification and internal controls"
+  },
+
+  /* 51 */
+  {
+    question: "In a Multi-State Co-operative Society, bye-laws mainly act as:",
+    options: [
+      "Internal rules for governance and operations",
+      "Daily attendance register",
+      "Salary calculation sheet",
       "Marketing plan"
     ],
-    correct: "Future aspirations"
+    correct: "Internal rules for governance and operations"
   },
 
-  /* 50 */ {
-    question: "Mission statement explains:",
+  /* 52 */
+  {
+    question: "If a society wants to amend its bye-laws, the proposal should generally be approved by:",
     options: [
-      "Long-term dream only",
-      "Purpose and core objectives",
-      "Share price",
-      "Advertising cost"
+      "Only one branch manager",
+      "General Body and competent authority",
+      "Any staff member",
+      "Customer service team"
     ],
-    correct: "Purpose and core objectives"
-  },
-  /* 1 */ {
-    question: "The Rochdale Principles are associated with:",
-    options: [
-      "Trade unions",
-      "Cooperative movement",
-      "Banking reform",
-      "Industrial policy"
-    ],
-    correct: "Cooperative movement"
+    correct: "General Body and competent authority"
   },
 
-  /* 2 */ {
-    question: "The modern cooperative movement began in:",
+  /* 53 */
+  {
+    question: "The main purpose of share capital in a co-operative society is to:",
     options: [
-      "France",
-      "Germany",
-      "United Kingdom",
-      "United States"
+      "Create member ownership and support society operations",
+      "Pay only staff salary",
+      "Avoid audits",
+      "Replace loan recovery"
     ],
-    correct: "United Kingdom"
+    correct: "Create member ownership and support society operations"
   },
 
-  /* 3 */ {
-    question: "The Rochdale Society of Equitable Pioneers was founded in:",
+  /* 54 */
+  {
+    question: "A member’s nominee details are important mainly for:",
     options: [
-      "1776",
-      "1844",
-      "1917",
-      "1945"
+      "Marketing purpose",
+      "Legal claim and settlement in future",
+      "Attendance marking",
+      "Staff transfer process"
     ],
-    correct: "1844"
+    correct: "Legal claim and settlement in future"
   },
 
-  /* 4 */ {
-    question: "ICA stands for:",
+  /* 55 */
+  {
+    question: "Poor loan recovery will directly affect:",
     options: [
-      "International Credit Association",
-      "Internal Cooperative Alliance",
-      "International Cooperative Alliance",
-      "Indian Cooperative Authority"
+      "Society liquidity and financial stability",
+      "Office decoration",
+      "Staff dress code",
+      "Public holiday list"
     ],
-    correct: "International Cooperative Alliance"
+    correct: "Society liquidity and financial stability"
   },
 
-  /* 5 */ {
-    question: "The headquarters of the International Cooperative Alliance is in:",
+  /* 56 */
+  {
+    question: "Before sanctioning a loan, the most important check is:",
     options: [
-      "Geneva",
-      "Brussels",
-      "London",
-      "Paris"
+      "Borrower’s repayment capacity and eligibility",
+      "Borrower’s personal relationship with staff",
+      "Speed of approval only",
+      "Branch location"
     ],
-    correct: "Brussels"
+    correct: "Borrower’s repayment capacity and eligibility"
   },
 
-  /* 6 */ {
-    question: "Amul is an example of a:",
+  /* 57 */
+  {
+    question: "If KYC documents are incomplete, the main risk is:",
     options: [
-      "Housing cooperative",
-      "Dairy cooperative",
-      "Credit union",
-      "Consumer cooperative"
+      "Better customer service",
+      "Regulatory and fraud risk",
+      "Faster loan processing",
+      "Higher member satisfaction"
     ],
-    correct: "Dairy cooperative"
+    correct: "Regulatory and fraud risk"
   },
 
-  /* 7 */ {
-    question: "The White Revolution in India is associated with:",
+  /* 58 */
+  {
+    question: "In gold loan processing, valuation mainly depends on:",
     options: [
-      "Green farming",
-      "Dairy development",
-      "Textile growth",
-      "IT industry"
+      "Gold purity and net weight",
+      "Ornament design only",
+      "Customer’s salary only",
+      "Staff recommendation"
     ],
-    correct: "Dairy development"
+    correct: "Gold purity and net weight"
   },
 
-  /* 8 */ {
-    question: "Who is known as the Father of the White Revolution in India?",
+  /* 59 */
+  {
+    question: "Mortgage loan security is mainly verified through:",
     options: [
-      "M. S. Swaminathan",
-      "Verghese Kurien",
-      "Jawaharlal Nehru",
-      "B. R. Ambedkar"
+      "Property documents and legal verification",
+      "Verbal confirmation",
+      "Customer photo",
+      "Branch approval note only"
     ],
-    correct: "Verghese Kurien"
+    correct: "Property documents and legal verification"
   },
 
-  /* 9 */ {
-    question: "Cooperative societies operate on the principle of:",
+  /* 60 */
+  {
+    question: "Reconciliation is mainly done to:",
     options: [
-      "Profit maximization",
-      "Democratic control",
-      "Monopoly",
-      "Centralization"
+      "Identify mismatches between records and transactions",
+      "Increase paperwork without purpose",
+      "Delay reporting",
+      "Avoid audit"
     ],
-    correct: "Democratic control"
+    correct: "Identify mismatches between records and transactions"
   },
 
-  /* 10 */ {
-    question: "One member, one vote is a principle of:",
+  /* 61 */
+  {
+    question: "Maker-checker control means:",
     options: [
-      "Corporations",
-      "Cooperatives",
-      "Partnerships",
-      "MNCs"
+      "Same person prepares and approves everything",
+      "One person prepares and another verifies/approves",
+      "Only manager handles all work",
+      "No approval is required"
     ],
-    correct: "Cooperatives"
+    correct: "One person prepares and another verifies/approves"
   },
 
-  /* 11 */ {
-    question: "The United Nations was established in:",
+  /* 62 */
+  {
+    question: "A rise in overdue loans indicates:",
     options: [
-      "1919",
-      "1945",
-      "1939",
-      "1955"
+      "Strong recovery system",
+      "Possible credit monitoring weakness",
+      "Better liquidity",
+      "Reduced audit risk"
     ],
-    correct: "1945"
+    correct: "Possible credit monitoring weakness"
   },
 
-  /* 12 */ {
-    question: "The headquarters of the United Nations is in:",
+  /* 63 */
+  {
+    question: "Internal audit helps the society to:",
     options: [
-      "Geneva",
-      "New York City",
-      "Paris",
-      "London"
+      "Find errors, risks and compliance gaps",
+      "Avoid maintaining records",
+      "Stop member services",
+      "Remove all procedures"
     ],
-    correct: "New York City"
+    correct: "Find errors, risks and compliance gaps"
   },
 
-  /* 13 */ {
-    question: "The IMF stands for:",
+  /* 64 */
+  {
+    question: "If loan disbursement increases but recovery does not improve, the society should mainly monitor:",
     options: [
-      "International Monetary Fund",
-      "International Market Federation",
-      "Internal Monetary Forum",
-      "International Management Fund"
+      "NPA and liquidity risk",
+      "Office furniture",
+      "Staff uniform",
+      "Advertisement design"
     ],
-    correct: "International Monetary Fund"
+    correct: "NPA and liquidity risk"
   },
 
-  /* 14 */ {
-    question: "The World Trade Organization was formed in:",
+  /* 65 */
+  {
+    question: "A General Body Meeting is important because:",
     options: [
-      "1985",
-      "1995",
-      "2001",
-      "1971"
+      "Major decisions and approvals are discussed with members",
+      "Only lunch arrangements are made",
+      "Staff interviews are conducted",
+      "Daily attendance is verified"
     ],
-    correct: "1995"
+    correct: "Major decisions and approvals are discussed with members"
   },
 
-  /* 15 */ {
-    question: "NATO was formed in:",
+  /* 66 */
+  {
+    question: "Which action shows weak governance?",
     options: [
-      "1914",
-      "1939",
-      "1949",
-      "1965"
+      "Proper documentation",
+      "Repeated procedural violations without correction",
+      "Timely reporting",
+      "Transparent communication"
     ],
-    correct: "1949"
+    correct: "Repeated procedural violations without correction"
   },
 
-  /* 16 */ {
-    question: "The European Union’s common currency is:",
+  /* 67 */
+  {
+    question: "The main purpose of member grievance handling is to:",
     options: [
-      "Dollar",
-      "Pound",
-      "Euro",
-      "Franc"
+      "Build trust and resolve issues fairly",
+      "Delay complaints",
+      "Avoid responsibility",
+      "Stop communication"
     ],
-    correct: "Euro"
+    correct: "Build trust and resolve issues fairly"
   },
 
-  /* 17 */ {
-    question: "The BRICS originally included:",
+  /* 68 */
+  {
+    question: "If an audit objection is raised, the best response is to:",
     options: [
-      "3 countries",
-      "4 countries",
-      "5 countries",
-      "6 countries"
+      "Ignore it",
+      "Verify, correct and submit proper explanation",
+      "Blame another department immediately",
+      "Hide records"
     ],
-    correct: "5 countries"
+    correct: "Verify, correct and submit proper explanation"
   },
 
-  /* 18 */ {
-    question: "The Cold War was mainly between:",
+  /* 69 */
+  {
+    question: "Society funds should be handled with:",
     options: [
-      "USA and Germany",
-      "USA and USSR",
-      "UK and France",
-      "China and Japan"
+      "Accuracy, accountability and proper records",
+      "Informal approval",
+      "Personal judgment only",
+      "Verbal confirmation only"
     ],
-    correct: "USA and USSR"
+    correct: "Accuracy, accountability and proper records"
   },
 
-  /* 19 */ {
-    question: "The Paris Agreement relates to:",
+  /* 70 */
+  {
+    question: "Which record is most important for loan file verification?",
     options: [
-      "Trade",
-      "Climate change",
-      "Military alliance",
-      "Nuclear weapons"
+      "Complete application, KYC, eligibility and approval documents",
+      "Office invitation card",
+      "Staff birthday list",
+      "Newspaper cutting"
     ],
-    correct: "Climate change"
+    correct: "Complete application, KYC, eligibility and approval documents"
+  },
+  
+    /* 71 */
+  {
+    question: "What is the biggest risk of verbal approvals in financial operations?",
+    options: [
+      "Strong evidence",
+      "Lack of accountability and audit proof",
+      "Faster audit closure",
+      "Better compliance"
+    ],
+    correct: "Lack of accountability and audit proof"
   },
 
-  /* 20 */ {
-    question: "The World Health Organization deals primarily with:",
+  /* 72 */
+  {
+    question: "Which factor improves long-term sustainability of a co-operative society?",
     options: [
-      "Trade",
-      "Education",
-      "Global health",
-      "Banking"
+      "Balanced lending, recovery, compliance and member service",
+      "High disbursement only",
+      "Delayed reconciliation",
+      "Weak monitoring"
     ],
-    correct: "Global health"
+    correct: "Balanced lending, recovery, compliance and member service"
   },
 
-  /* 21 */ {
-    question: "Democracy means rule by:",
+  /* 73 */
+  {
+    question: "If a borrower requests loan beyond eligible limit, staff should:",
     options: [
-      "King",
-      "People",
-      "Military",
-      "Elite"
+      "Approve based on pressure",
+      "Follow policy and eligibility norms",
+      "Ignore documentation",
+      "Take verbal approval only"
     ],
-    correct: "People"
+    correct: "Follow policy and eligibility norms"
   },
 
-  /* 22 */ {
-    question: "The doctrine of separation of powers was proposed by:",
+  /* 74 */
+  {
+    question: "ERP/system entries are important because they:",
     options: [
-      "John Locke",
-      "Montesquieu",
-      "Karl Marx",
-      "Plato"
+      "Create official digital records and support tracking",
+      "Replace all approvals automatically",
+      "Are only for decoration",
+      "Are not useful for audit"
     ],
-    correct: "Montesquieu"
+    correct: "Create official digital records and support tracking"
   },
 
-  /* 23 */ {
-    question: "The Constitution of India came into effect on:",
+  /* 75 */
+  {
+    question: "The most important quality for MSCS operational staff is:",
     options: [
-      "15 August 1947",
-      "26 January 1950",
-      "26 November 1949",
-      "2 October 1947"
+      "Accuracy, confidentiality and compliance mindset",
+      "Casual handling",
+      "Delay in reporting",
+      "Personal influence"
     ],
-    correct: "26 January 1950"
+    correct: "Accuracy, confidentiality and compliance mindset"
   },
 
-  /* 24 */ {
-    question: "Bicameral legislature means:",
+  /* 76 */
+  {
+    question: "A customer becomes angry due to delay in service. Your first response would be to:",
     options: [
-      "One house",
-      "Two houses",
-      "Three houses",
-      "No house"
+      "Argue immediately",
+      "Calmly understand the issue and respond professionally",
+      "Ignore the customer",
+      "Ask another employee to handle it without explanation"
     ],
-    correct: "Two houses"
+    correct: "Calmly understand the issue and respond professionally"
   },
 
-  /* 25 */ {
-    question: "The concept of socialism advocates:",
+  /* 77 */
+  {
+    question: "If you identify a mistake in an official report prepared by you, you would:",
     options: [
-      "Private ownership only",
-      "Public ownership of means of production",
-      "Military rule",
-      "Absolute monarchy"
+      "Ignore it if unnoticed",
+      "Inform the concerned person and correct it immediately",
+      "Delete the report permanently",
+      "Blame another employee"
     ],
-    correct: "Public ownership of means of production"
+    correct: "Inform the concerned person and correct it immediately"
   },
 
-  /* 26 */ {
-    question: "The term “Cold War” was popularized by:",
+  /* 78 */
+  {
+    question: "When handling multiple urgent tasks, you usually:",
     options: [
-      "Winston Churchill",
-      "George Orwell",
-      "Franklin Roosevelt",
-      "Joseph Stalin"
+      "Work randomly",
+      "Prioritize based on urgency and impact",
+      "Delay all tasks equally",
+      "Wait for reminders repeatedly"
     ],
-    correct: "George Orwell"
+    correct: "Prioritize based on urgency and impact"
   },
 
-  /* 27 */ {
-    question: "Federalism refers to:",
+  /* 79 */
+  {
+    question: "If confidential information is accidentally shared, your immediate action should be:",
     options: [
-      "Centralized power",
-      "Division of powers between levels of government",
-      "Military governance",
-      "Single-party system"
+      "Ignore the issue",
+      "Escalate appropriately and secure the information",
+      "Share it internally for discussion",
+      "Delete all related files"
     ],
-    correct: "Division of powers between levels of government"
+    correct: "Escalate appropriately and secure the information"
   },
 
-  /* 28 */ {
-    question: "Universal adult franchise means:",
+  /* 80 */
+  {
+    question: "A colleague repeatedly avoids responsibilities, affecting team work. You would:",
     options: [
-      "Voting by landowners",
-      "Voting by educated citizens",
-      "Voting rights to all adults",
-      "Voting by men only"
+      "Publicly criticize them",
+      "Professionally address/escalate through proper process",
+      "Ignore permanently",
+      "Delay your own work too"
     ],
-    correct: "Voting rights to all adults"
+    correct: "Professionally address/escalate through proper process"
   },
 
-  /* 29 */ {
-    question: "The Magna Carta was signed in:",
+  /* 81 */
+  {
+    question: "During high-pressure situations, your preferred approach is:",
     options: [
-      "1215",
-      "1492",
-      "1776",
-      "1914"
+      "Panic and react emotionally",
+      "Analyze the situation and act systematically",
+      "Avoid responsibility",
+      "Wait until someone else handles it"
     ],
-    correct: "1215"
+    correct: "Analyze the situation and act systematically"
   },
 
-  /* 30 */ {
-    question: "The term “Republic” means:",
+  /* 82 */
+  {
+    question: "If a customer repeatedly asks doubts regarding a process, you would:",
     options: [
-      "Hereditary ruler",
-      "Elected head of state",
-      "Military ruler",
-      "Colonial rule"
+      "Get irritated",
+      "Explain patiently and clearly",
+      "Ignore the questions",
+      "Ask them to come another day"
     ],
-    correct: "Elected head of state"
+    correct: "Explain patiently and clearly"
   },
 
-  /* 31 */ {
-    question: "World War I began in:",
+  /* 83 */
+  {
+    question: "Which quality best reflects professionalism?",
     options: [
-      "1912",
-      "1914",
-      "1916",
-      "1918"
+      "Accountability and discipline",
+      "Emotional reactions",
+      "Informal handling of records",
+      "Delayed communication"
     ],
-    correct: "1914"
+    correct: "Accountability and discipline"
   },
 
-  /* 32 */ {
-    question: "World War II ended in:",
+  /* 84 */
+  {
+    question: "If team members disagree on a workflow decision, you would:",
     options: [
-      "1943",
-      "1944",
-      "1945",
-      "1946"
+      "Encourage discussion and resolution",
+      "Create argument to prove your point",
+      "Ignore the issue",
+      "Delay the process intentionally"
     ],
-    correct: "1945"
+    correct: "Encourage discussion and resolution"
   },
 
-  /* 33 */ {
-    question: "The League of Nations was formed after:",
+  /* 85 */
+  {
+    question: "When assigned unfamiliar work, your approach would be:",
     options: [
-      "World War I",
-      "World War II",
-      "Cold War",
-      "French Revolution"
+      "Refuse immediately",
+      "Learn and seek guidance if necessary",
+      "Delay the task",
+      "Shift responsibility to others"
     ],
-    correct: "World War I"
+    correct: "Learn and seek guidance if necessary"
   },
 
-  /* 34 */ {
-    question: "The French Revolution began in:",
+  /* 86 */
+  {
+    question: "Which action best reflects ethical conduct?",
     options: [
-      "1789",
-      "1776",
-      "1815",
-      "1917"
+      "Maintaining transparency and confidentiality",
+      "Sharing passwords for convenience",
+      "Ignoring procedural violations",
+      "Manipulating records for speed"
     ],
-    correct: "1789"
+    correct: "Maintaining transparency and confidentiality"
   },
 
-  /* 35 */ {
-    question: "The Industrial Revolution began in:",
+  /* 87 */
+  {
+    question: "If operational targets are not achieved, you would first:",
     options: [
-      "USA",
-      "France",
-      "United Kingdom",
-      "Germany"
+      "Blame external conditions",
+      "Analyze gaps and identify improvements",
+      "Ignore the issue",
+      "Delay reporting to management"
     ],
-    correct: "United Kingdom"
+    correct: "Analyze gaps and identify improvements"
   },
 
-  /* 36 */ {
-    question: "The Russian Revolution occurred in:",
+  /* 88 */
+  {
+    question: "A senior publicly criticizes your work. Your response would most likely be:",
     options: [
-      "1905",
-      "1917",
-      "1923",
-      "1939"
+      "Argue emotionally",
+      "Remain professional and improve performance",
+      "Stop cooperating with the senior",
+      "Ignore future instructions"
     ],
-    correct: "1917"
+    correct: "Remain professional and improve performance"
   },
 
-  /* 37 */ {
-    question: "India gained independence in:",
+  /* 89 */
+  {
+    question: "If unauthorized access to records is identified, you would:",
     options: [
-      "1945",
-      "1946",
-      "1947",
-      "1950"
+      "Ignore if no damage is visible",
+      "Report immediately and secure access",
+      "Share the issue casually with colleagues",
+      "Delete the records"
     ],
-    correct: "1947"
+    correct: "Report immediately and secure access"
   },
 
-  /* 38 */ {
-    question: "The American Declaration of Independence was signed in:",
+  /* 90 */
+  {
+    question: "What motivates you most in a workplace?",
     options: [
-      "1776",
-      "1789",
-      "1812",
-      "1865"
+      "Learning, growth and responsibility",
+      "Avoiding work pressure",
+      "Informal work culture only",
+      "Personal influence"
     ],
-    correct: "1776"
+    correct: "Learning, growth and responsibility"
   },
 
-  /* 39 */ {
-    question: "The Berlin Wall fell in:",
+  /* 91 */
+  {
+    question: "Which factor most improves team coordination?",
     options: [
-      "1987",
-      "1988",
-      "1989",
-      "1991"
+      "Clear communication and accountability",
+      "Delayed instructions",
+      "Informal approvals",
+      "Avoiding responsibility"
     ],
-    correct: "1989"
+    correct: "Clear communication and accountability"
   },
 
-  /* 40 */ {
-    question: "The Renaissance began in:",
+  /* 92 */
+  {
+    question: "If you disagree with a management decision, you would:",
     options: [
-      "England",
-      "Spain",
-      "Italy",
-      "Germany"
+      "Publicly criticize it",
+      "Professionally communicate your concerns",
+      "Ignore assigned work",
+      "Spread negativity among staff"
     ],
-    correct: "Italy"
+    correct: "Professionally communicate your concerns"
   },
 
-  /* 41 */ {
-    question: "The Treaty of Versailles was signed in:",
+  /* 93 */
+  {
+    question: "Which quality is most important while handling financial or operational records?",
     options: [
-      "1918",
-      "1919",
-      "1920",
-      "1933"
+      "Accuracy and attention to detail",
+      "Emotional judgment",
+      "Informal communication",
+      "Delayed verification"
     ],
-    correct: "1919"
+    correct: "Accuracy and attention to detail"
   },
 
-  /* 42 */ {
-    question: "The United States was founded in:",
+  /* 94 */
+  {
+    question: "During operational uncertainty, the best decision-making approach is:",
     options: [
-      "1776",
-      "1783",
-      "1800",
-      "1815"
+      "Analytical evaluation and risk assessment",
+      "Emotional instinct only",
+      "Delaying all actions",
+      "Waiting for others to decide"
     ],
-    correct: "1776"
+    correct: "Analytical evaluation and risk assessment"
   },
 
-  /* 43 */ {
-    question: "The Non-Aligned Movement was founded in 1961 at:",
+  /* 95 */
+  {
+    question: "Which behaviour most negatively affects workplace productivity?",
     options: [
-      "Cairo",
-      "Belgrade",
-      "Jakarta",
-      "New Delhi"
+      "Poor accountability and unclear communication",
+      "Structured coordination",
+      "Timely reporting",
+      "Process discipline"
     ],
-    correct: "Belgrade"
+    correct: "Poor accountability and unclear communication"
   },
 
-  /* 44 */ {
-    question: "The first man to walk on the moon was:",
+  /* 96 */
+  {
+    question: "If a borrower pressures you for policy exception without eligibility, you would:",
     options: [
-      "Yuri Gagarin",
-      "Buzz Aldrin",
-      "Neil Armstrong",
-      "Michael Collins"
+      "Approve to avoid conflict",
+      "Follow policy and eligibility norms",
+      "Ignore documentation standards",
+      "Delay the process without explanation"
     ],
-    correct: "Neil Armstrong"
+    correct: "Follow policy and eligibility norms"
   },
 
-  /* 45 */ {
-    question: "The Great Depression began in:",
+  /* 97 */
+  {
+    question: "Which characteristic most strongly indicates leadership potential?",
     options: [
-      "1918",
-      "1929",
-      "1935",
-      "1940"
+      "Ownership and decision-making ability",
+      "Avoiding accountability",
+      "Dependence on supervision",
+      "Delayed communication"
     ],
-    correct: "1929"
+    correct: "Ownership and decision-making ability"
   },
 
-  /* 46 */ {
-    question: "The Bolshevik leader during the Russian Revolution was:",
+  /* 98 */
+  {
+    question: "If audit observations identify mistakes in your process, your response should be:",
     options: [
-      "Joseph Stalin",
-      "Vladimir Lenin",
-      "Leon Trotsky",
-      "Nicholas II"
+      "Justify without correction",
+      "Correct issues and strengthen controls",
+      "Ignore the observations",
+      "Delay response intentionally"
     ],
-    correct: "Vladimir Lenin"
+    correct: "Correct issues and strengthen controls"
   },
 
-  /* 47 */ {
-    question: "The Suez Crisis occurred in:",
+  /* 99 */
+  {
+    question: "Which approach best improves operational discipline?",
     options: [
-      "1956",
-      "1962",
-      "1948",
-      "1973"
+      "Clear accountability and compliance",
+      "Informal approvals",
+      "Weak monitoring",
+      "Delayed reporting"
     ],
-    correct: "1956"
+    correct: "Clear accountability and compliance"
   },
 
-  /* 48 */ {
-    question: "The apartheid system was practiced in:",
+  /* 100 */
+  {
+    question: "Which overall quality best suits a Junior Executive role?",
     options: [
-      "USA",
-      "Australia",
-      "South Africa",
-      "Canada"
+      "Professionalism, accountability and analytical thinking",
+      "Informal working style",
+      "Dependency on others",
+      "Emotional decision-making"
     ],
-    correct: "South Africa"
-  },
-
-  /* 49 */ {
-    question: "The Ottoman Empire collapsed after:",
-    options: [
-      "World War I",
-      "World War II",
-      "Cold War",
-      "Crimean War"
-    ],
-    correct: "World War I"
-  },
-
-  /* 50 */ {
-    question: "The United Nations Security Council has:",
-    options: [
-      "10 members",
-      "12 members",
-      "15 members",
-      "20 members"
-    ],
-    correct: "15 members"
+    correct: "Professionalism, accountability and analytical thinking"
   }
 ];
-
+  
+];
 
 
   const login = document.getElementById("login");
@@ -1347,6 +1450,5 @@ Correct Answer: ${q.correct}
 
 </body>
 </html>
-
 
 
