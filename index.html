@@ -1315,8 +1315,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     login.classList.add("hidden");
     exam.classList.remove("hidden");
-    document.documentElement.requestFullscreen?.();
-    loadQuestion();
+	if (document.documentElement.requestFullscreen) {
+	  document.documentElement.requestFullscreen();
+}    loadQuestion();
   });
 
   function loadQuestion() {
