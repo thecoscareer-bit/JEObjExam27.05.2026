@@ -1307,7 +1307,31 @@ document.addEventListener("DOMContentLoaded", () => {
   let timeLeft = QUESTION_TIME;
   let examFinished = false;
 
+const EXAM_START_HOUR=22;
+const EXAM_START_MIN=0;
+const EXAM_END_HOUR=23;
+const EXAM_END_MIN=30;
+
+function isExamTime(){
+ const now=new Date();
+ const start=new Date(now); start.setHours(EXAM_START_HOUR,EXAM_START_MIN,0,0);
+ const end=new Date(now); end.setHours(EXAM_END_HOUR,EXAM_END_MIN,0,0);
+ return now>=start && now<=end;
+}
+function getExamEndTime(){
+ const end=new Date();
+ end.setHours(EXAM_END_HOUR,EXAM_END_MIN,0,0);
+ return end;
+}
+
+
+
   startBtn.addEventListener("click", () => {
+    if (!isExamTime()) {
+      alert("The quiz is available only from 10:00 PM to 11:30 PM.");
+      return;
+    }
+
     if (!nameInput.value.trim() || !emailInput.value.trim()) {
       alert("Enter name and email");
       return;
@@ -1318,6 +1342,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (document.documentElement.requestFullscreen) {
 	  document.documentElement.requestFullscreen();
 }    loadQuestion();
+    const remainingTime=getExamEndTime().getTime()-Date.now();
+    if(remainingTime>0){setTimeout(()=>{if(!examFinished){alert('Quiz time is over. Submitting automatically.');finishExam();}},remainingTime);}
   });
 
   function loadQuestion() {
@@ -1450,7 +1476,6 @@ Correct Answer: ${q.correct}
 
 </body>
 </html>
-
 
 
 
